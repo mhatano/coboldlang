@@ -28,6 +28,8 @@ class Example {
                 type : String;
                 initialvalue : null;
             }
+            imports
+                String : java.lang.String;
         }
 
         declaration main {
@@ -47,6 +49,8 @@ class Example {
                 locals
                     main : nonnull, nonderived;
             } 
+            imports
+                String : java.lang.String;
         }
         declaration helloWorld {
             attributes {
@@ -76,8 +80,8 @@ class Example {
                 arguments
                     name : nullable, immutable;
                 locals
+                    supplierCopyOfName : nonnull, immutable, initializedatassignment;
                     copyOfName : nonnull, immutable, initializeatassignment;
-                    stringBuilder : nonnull, immutable, initializeatassignment;
             }
         }
     }

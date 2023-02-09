@@ -17,6 +17,8 @@ class Example {
                 type : String;
                 initialvalue : null;
             }
+			imports
+				String : java.lang.String;
         }
 
         declaration main {
@@ -36,6 +38,8 @@ class Example {
                 locals
                     main : nonnull, nonderived;
             } 
+			imports
+				String : java.lang.String;
         }
         declaration helloWorld {
             attributes {
