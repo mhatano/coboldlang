@@ -61,6 +61,7 @@ class Example {
                 locals {
                     copyOfName : instanceof String;
                     stringBuilder : instanceof StringBuilder;
+                    supplierCopyOfName : instanceof Supplier<String>;
                 }
                 constants
                     defaultname : "world";
@@ -69,12 +70,14 @@ class Example {
                     Character : java.lang.Character;
                     String : java.lang.String;
                     StringBuilder : java.lang.StringBuilder;
+                    Supplier : java.lang.function.Supplier;
                 }
             }
             contracts {
                 arguments
                     name : nullable, immutable;
                 locals
+                    supplierCopyOfName : nonnull, immutable, initializedatassignment;
                     copyOfName : nonnull, immutable, initializeatassignment;
                     stringBuilder : nonnull, immutable, initializeatassignment;
             }
@@ -89,7 +92,7 @@ class Example {
         }
 
         implementation helloWorld {
-            copyOfName = {
+            supplierCopyOfName = () -> {
                 if ( name == null && lastName == null ) {
                     return "World";
                 } else if ( name == null ) {
@@ -103,6 +106,7 @@ class Example {
                     return name.clone();
                 }
             };
+            copyOfName = supplierCopyOfName.get();
             System.out.printf("Hello, %s!\n",copyOfName);
             if ( savelast ) {
                 lastName = copyOfName;
