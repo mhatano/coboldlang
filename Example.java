@@ -14,7 +14,7 @@ public class Example {
 	}
 
 	public void helloWorld(String name,boolean savelast) {
-		Supplier<String> supplierCopyOfName = () -> {
+		String copyOfName = ((Supplier<String>)(() -> {
 			if ( name == null && lastName == null ) {
 				return "World";
 			} else if ( name == null ) {
@@ -26,8 +26,7 @@ public class Example {
 				return stringBuilder.toString();
 			}
 			return new String(name);
-		};
-		String copyOfName = supplierCopyOfName.get();
+		})).get();
 		System.out.printf("Hello, %s!\n",copyOfName);
 		if ( savelast ) {
 			lastName = copyOfName;
